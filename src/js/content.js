@@ -15,8 +15,8 @@ st.get(item => {
         ...st,
         isExtEnabled: defaultValues.isExtEnabled, // always must be false
         fileName: fileName || defaultValues.fileName,
-        leftPart: leftPart || defaultValues.leftPart,
-        rightPart: rightPart || defaultValues.rightPart,
+        leftPart: leftPart,
+        rightPart: rightPart,
     })
 });
 
@@ -60,17 +60,10 @@ $(function () {
         else $('#cur_track_extension__toggle-state__setting1').attr('disabled', false)
     })
 
-    $('#cur_track_extension__left').on('change', e => {
+    $('#cur_track_extension__left, #cur_track_extension__right').on('change', e => {
         st.set({
             ...st,
-            'leftPart': e.target.value
-        })
-    })
-
-    $('#cur_track_extension__right').on('change', e => {
-        st.set({
-            ...st,
-            'rightPart': e.target.value
+            [e.target.name]: e.target.value
         })
     })
 
