@@ -1,43 +1,54 @@
-// chrome.runtime.onInstalled.addListener((reason) => {
-//   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
-//     chrome.tabs.create({
-//       url: 'popup.html'
-//     });
-//   }
-// });
+let fn = 'currentTrack.txt'
+
+chrome.storage.onChanged.addListener(function (changes) {
+  for (let [key, { newValue }] of Object.entries(changes)) {
+    if (key === 'fileName') {
+      fn = newValue + '.txt'
+    }
+  }
+});
 
 chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
-  suggest({
-    filename: item.filename,
-    conflict_action: 'overwrite',
-    conflictAction: 'overwrite'
-  });
+  if (item.byExtensionName === 'Current Track On Stream For OBS') {
+    suggest({
+      filename: fn || item.filename,
+      conflict_action: 'overwrite',
+      conflictAction: 'overwrite'
+    });
+  }
 });
+
+function downloadFile(file) {
+  const reader = new FileReader();
+  reader.onloadend = function () {
+    chrome.downloads.download({
+      url: reader.result
+    });
+  }
+  reader.readAsDataURL(file);
+}
 
 const keywords = [
   'youtube.com', 'open.spotify', 'music.yandex', 'vk.com'
-]
+];
 
-window.onload = async function () {
-  await setInterval(async () => {
-    await chrome.tabs.query(
-      {
-        audible: true,
-      },
-      tabs => {
-        tabs.forEach(tab => {
-          chrome.storage.sync.get(k => {
-            if (k.isExtEnabled) {
-              if (keywords.some(k => tab.url.includes(k))) {
-                let element = document.createElement('a');
-                element.setAttribute('href', 'data:text/text;charset=utf-8,' + encodeURI(` ${k.leftPart} ` + tab.title + ` ${k.rightPart} `));
-                element.setAttribute('download', k.fileName + '.txt');
-                element.click();
-              }
+(() => setInterval(() => {
+  chrome.tabs.query(
+    {
+      audible: true,
+    },
+    (tabs) => {
+      tabs.forEach(tab => {
+        chrome.storage.sync.get(k => {
+          fn = k.fileName + '.txt';
+          if (k.isExtEnabled) {
+            if (keywords.some(k => tab.url.includes(k))) {
+              const file = new File([` ${k.leftPart} ` + tab.title + ` ${k.rightPart} `], k.fileName + '.txt', { type: "text/plain;charset=UTF-8" });
+              downloadFile(file)
             }
-          })
-        });
-      }
-    )
-  }, 5000)
-}
+          }
+        })
+      });
+    }
+  )
+}, 5000))(); 

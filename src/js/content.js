@@ -21,6 +21,7 @@ st.get(item => {
 });
 
 $(function () {
+
     st.get(item => {
         $('#cur_track_extension__filename').prop('value', item.fileName)
         $('#cur_track_extension__left').prop('value', item.leftPart)
@@ -38,7 +39,6 @@ $(function () {
     })
 
     $('#cur_track_extension__settings').on('click', e => {
-        console.log(1);
         if ($('.cur_track_extension__col2').css('display') === 'none') {
             $('.cur_track_extension__col2').css('display', 'block')
         } else {

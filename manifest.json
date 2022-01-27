@@ -1,13 +1,10 @@
 {
-  "name": "Current Track For OBS",
-  "description": "Find current playing track and download file to show track from file in OBS",
+  "name": "Current Track On Stream For OBS",
+  "description": "Load current playing track from file to Scene (OBS, etc.) while streaming!",
   "version": "1.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "background": {
-    "scripts": [
-      "src/js/background.js"
-    ],
-    "persistent": false
+    "service_worker": "src/js/background.js"
   },
   "permissions": [
     "storage",
@@ -15,27 +12,31 @@
     "background",
     "downloads"
   ],
-  "web_accessible_resources": [
-    "src/css/style.css"
-  ],
   "content_scripts": [
     {
       "matches": [
-        "https://www.music.yandex.ru/",
-        "http://www.music.yandex.ru/",
+        "http://*/*",
+        "https://www.music.yandex.ru/*",
+        "http://www.music.yandex.ru/*",
+        "https://www.open.spotify.com/*",
+        "http://www.open.spotify.com/*",
+        "https://www.vk.com/*",
+        "http://www.vk.com/*",
+        "https://www.youtube.com/*",
+        "http://www.youtube.com/*",
         "<all_urls>"
       ],
       "css": [
         "src/css/style.css"
       ],
       "js": [
-        "src/js/jquery-3.5.1.js",
-        "src/js/content.js"
+        "src/js/content.js",
+        "src/js/jquery-3.5.1.js"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ],
-  "browser_action": {
+  "action": {
     "default_title": "Current Track",
     "default_icon": "src/img/icon.png",
     "default_popup": "src/html/popup.html"
