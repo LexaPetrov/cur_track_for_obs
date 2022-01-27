@@ -1,0 +1,43 @@
+{
+  "name": "Current Track For OBS",
+  "description": "Find current playing track and download file to show track from file in OBS",
+  "version": "1.0",
+  "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "src/js/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "background",
+    "downloads"
+  ],
+  "web_accessible_resources": [
+    "src/css/style.css"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.music.yandex.ru/",
+        "http://www.music.yandex.ru/",
+        "<all_urls>"
+      ],
+      "css": [
+        "src/css/style.css"
+      ],
+      "js": [
+        "src/js/jquery-3.5.1.js",
+        "src/js/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_title": "Current Track",
+    "default_icon": "src/img/icon.png",
+    "default_popup": "src/html/popup.html"
+  }
+}
