@@ -3,14 +3,14 @@
 .cur_track_extension__group {
   position: relative;
   margin-top: 20px;
-  margin-bottom: 20px;
-  display: none;
+  margin-bottom: 30px;
+  width: 300px;
 }
 .cur_track_extension__input {
   font-size: 14px;
   padding: 10px 10px 10px 5px;
   display: block;
-  width: 300px;
+  width: 250px;
   border: none;
   border-bottom: 1px solid #757575;
 }

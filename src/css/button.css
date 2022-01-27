@@ -22,9 +22,7 @@
   user-select: none;
   -webkit-user-select: none;
   width: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: none;
+  margin-top: 10px;
 }
 
 .cur_track_extension__button:focus-visible {

@@ -1,13 +1,32 @@
 .cur_track_extension__body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 300px;
   max-height: 100%;
-  width: 300px;
+  width: 400px;
+  max-width: 500px;
   font-size: 16px;
   padding: 15px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.cur_track_extension__col1 {
+  flex-shrink: 0;
+}
+
+.cur_track_extension__col1 {
+  width: 300px;
+}
+
+.cur_track_extension__col3 {
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-left: 10px;
+  flex-shrink: 0;
 }
 
 hr.cur_track_extension__hr {

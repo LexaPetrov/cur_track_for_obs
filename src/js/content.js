@@ -38,12 +38,16 @@ $(function () {
     })
 
     $('#cur_track_extension__settings').on('click', e => {
-        if ($('.cur_track_extension__group').css('display') === 'none') {
-            $('.cur_track_extension__group').css('display', 'block')
-            $('#cur_track_extension__button').css('display', 'inline')
+        console.log(1);
+        if ($('.cur_track_extension__col2').css('display') === 'none') {
+            $('.cur_track_extension__col2').css('display', 'block')
         } else {
-            $('.cur_track_extension__group').css('display', 'none');
-            $('#cur_track_extension__button').css('display', 'none');
+            $('.cur_track_extension__col2').css('display', 'none');
+        }
+        if ($('.cur_track_extension__col1').css('display') === 'block') {
+            $('.cur_track_extension__col1').css('display', 'none')
+        } else {
+            $('.cur_track_extension__col1').css('display', 'block')
         }
     })
 

@@ -13,94 +13,101 @@
 </head>
 
 <body class="cur_track_extension__body">
-  <h2>🎶 Current Track For OBS</h2>
-  <label class="cur_track_extension__label">
-    <div class="cur_track_extension__label-text">Turn ON/OFF Song Search</div>
-    <div class="cur_track_extension__toggle">
-      <input name="s1" id="cur_track_extension__toggle-state__setting1" class="cur_track_extension__toggle-state"
-        type="checkbox" />
-      <div class="cur_track_extension__toggle-inner">
-        <div class="cur_track_extension__indicator"></div>
+  <div class="cur_track_extension__col1">
+    <h2>🎶 Current Track For OBS</h2>
+    <label class="cur_track_extension__label">
+      <div class="cur_track_extension__label-text">Turn ON/OFF Song Search</div>
+      <div class="cur_track_extension__toggle">
+        <input name="s1" id="cur_track_extension__toggle-state__setting1" class="cur_track_extension__toggle-state"
+          type="checkbox" />
+        <div class="cur_track_extension__toggle-inner">
+          <div class="cur_track_extension__indicator"></div>
+        </div>
+        <div class="cur_track_extension__active-bg"></div>
       </div>
-      <div class="cur_track_extension__active-bg"></div>
+    </label>
+
+    <hr class="cur_track_extension__hr">
+
+    <div>
+      <p id="cur_track_extension__example">
+        Default Example: ♬ Song - Author ♬
+      </p>
     </div>
-  </label>
 
-  <hr class="cur_track_extension__hr">
+    <ul>
+      <lh>Works for:</lh>
+      <li>
+        <a class="cur_track_extension__a" href="https://music.yandex.ru/" target="_blank"></a>
+        Yandex.Music</a>
+      </li>
+      <li>
+        <a class="cur_track_extension__a" href="https://open.spotify.com/" target="_blank"></a>
+        Spotify</a>
+      </li>
+      <li>
+        <a class="cur_track_extension__a" href="https://vk.com/" target="_blank"></a>
+        VK (audios page)</a>
+      </li>
+      <li>
+        <a class="cur_track_extension__a" href="https://youtube.com/" target="_blank"></a>
+        YouTube current playing videos</a>
+      </li>
+    </ul>
 
-  <div class="cur_track_extension__group">
-    <input class="cur_track_extension__input" type="text" id="cur_track_extension__filename" />
-    <span class="cur_track_extension__highlight"></span>
-    <span class="cur_track_extension__bar"></span>
-    <label class="cur_track_extension__input__label">FileName</label>
+    <hr class="cur_track_extension__hr" />
+
+    <a class="cur_track_extension__a mt10" href="https://www.donationalerts.com/r/ne_creator" target="_blank">💰 support</a>
+    <a class="cur_track_extension__a mt10" href="mailto:al1111997@yandex.ru">✉ contact</a>
   </div>
 
-  <div class="cur_track_extension__group">
-    <input class="cur_track_extension__input" type="text" id="cur_track_extension__left" />
-    <span class="cur_track_extension__highlight"></span>
-    <span class="cur_track_extension__bar"></span>
-    <label class="cur_track_extension__input__label">Text on left</label>
+  <div class="cur_track_extension__col2" style="display: none;">
+    <div class="cur_track_extension__group">
+      <input class="cur_track_extension__input" type="text" id="cur_track_extension__filename" />
+      <span class="cur_track_extension__highlight"></span>
+      <span class="cur_track_extension__bar"></span>
+      <label class="cur_track_extension__input__label">FileName</label>
+    </div>
+
+    <div class="cur_track_extension__group">
+      <input class="cur_track_extension__input" type="text" id="cur_track_extension__left" />
+      <span class="cur_track_extension__highlight"></span>
+      <span class="cur_track_extension__bar"></span>
+      <label class="cur_track_extension__input__label">Text on left</label>
+    </div>
+
+    <div class="cur_track_extension__group">
+      <input class="cur_track_extension__input" type="text" id="cur_track_extension__right" />
+      <span class="cur_track_extension__highlight"></span>
+      <span class="cur_track_extension__bar"></span>
+      <label class="cur_track_extension__input__label">Text on right</label>
+    </div>
+
+    <div class="cur_track_extension__group">
+      <ol>
+        <lh>Instruction:</lh>
+        <li>Turn on music on supported site</li>
+        <li>(optional) customize settings</li>
+        <li>Turn on toggle on top</li>
+        <li>File with FileName from settings will be downloaded in default download path in your brouser</li>
+        <li>Open OBS</li>
+        <li>Add text source on Scene and check "load from file"</li>
+        <li>Select downloaded file</li>
+        <li>That`s all. File will be updated every 5 seconds.</li>
+      </ol>
+    </div>
+
+
+    <button id="cur_track_extension__button" class="cur_track_extension__button" role="button">
+      Reset to defaults
+    </button>
+
   </div>
 
-  <div class="cur_track_extension__group">
-    <input class="cur_track_extension__input" type="text" id="cur_track_extension__right" />
-    <span class="cur_track_extension__highlight"></span>
-    <span class="cur_track_extension__bar"></span>
-    <label class="cur_track_extension__input__label">Text on right</label>
+  <div class="cur_track_extension__col3">
+    <a class="cur_track_extension__a" id="cur_track_extension__settings" href="#">⚙ settings ⚙</a>
   </div>
 
-  <div class="cur_track_extension__group">
-    <ol>
-      <lh>Instruction:</lh>
-      <li>Turn on music on supported site</li>
-      <li>(optional) customize settings</li>
-      <li>Turn on toggle on top</li>
-      <li>File with FileName from settings will be downloaded in default download path in your brouser</li>
-      <li>Open OBS</li>
-      <li>Add text source on Scene and check "load from file"</li>
-      <li>Select downloaded file</li>
-      <li>That`s all. File will be updated every 5 seconds.</li>
-    </ol>
-  </div>
-
-  <div>
-    <p id="cur_track_extension__example">
-      Default Example: ♬ Song - Author ♬
-    </p>
-  </div>
-
-  <button id="cur_track_extension__button" class="cur_track_extension__button" role="button">
-    Reset to defaults
-  </button>
-
-  <ul>
-    <lh>Works for:</lh>
-    <li>
-      <a class="cur_track_extension__a" href="https://music.yandex.ru/" target="_blank"></a>
-      Yandex.Music</a>
-    </li>
-    <li>
-      <a class="cur_track_extension__a" href="https://open.spotify.com/" target="_blank"></a>
-      Spotify</a>
-    </li>
-    <li>
-      <a class="cur_track_extension__a" href="https://vk.com/" target="_blank"></a>
-      VK (audios page)</a>
-    </li>
-    <li>
-      <a class="cur_track_extension__a" href="https://youtube.com/" target="_blank"></a>
-      YouTube current playing videos</a>
-    </li>
-  </ul>
-
-  <hr class="cur_track_extension__hr" />
-
-  <a class="cur_track_extension__a" id="cur_track_extension__settings" href="#">⚙ settings ⚙</a>
-
-  <hr class="cur_track_extension__hr" />
-
-  <a class="cur_track_extension__a" href="https://www.donationalerts.com/r/ne_creator" target="_blank">💰 support</a>
-  <a class="cur_track_extension__a" href="mailto:al1111997@yandex.ru">✉ contact</a>
 </body>
 
 </html>
