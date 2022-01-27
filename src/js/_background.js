@@ -32,7 +32,7 @@ const keywords = [
   'youtube.com', 'open.spotify', 'music.yandex', 'vk.com'
 ];
 
-(() => setInterval(() => {
+setInterval(() => {
   chrome.tabs.query(
     {
       audible: true,
@@ -51,4 +51,4 @@ const keywords = [
       });
     }
   )
-}, 5000))(); 
+}, 5000);

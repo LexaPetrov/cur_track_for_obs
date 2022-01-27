@@ -1,4 +1,17 @@
 let st = chrome.storage.sync;
+const log = []
+
+const keywords = [
+    'youtube.com', 'open.spotify', 'music.yandex', 'vk.com'
+];
+
+chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
+    suggest({
+        filename: item.filename,
+        conflict_action: 'overwrite',
+        conflictAction: 'overwrite'
+    });
+});
 
 const defaultValues = {
     isExtEnabled: false,
@@ -15,8 +28,8 @@ st.get(item => {
         ...st,
         isExtEnabled: defaultValues.isExtEnabled, // always must be false
         fileName: fileName || defaultValues.fileName,
-        leftPart: leftPart,
-        rightPart: rightPart,
+        leftPart: leftPart || '',
+        rightPart: rightPart || '',
     })
 });
 
@@ -38,16 +51,19 @@ $(function () {
         $('#cur_track_extension__button').attr('disabled', e.target.checked);
     })
 
-    $('#cur_track_extension__settings').on('click', e => {
+    $('#cur_track_extension__settings').on('click', () => {
         if ($('.cur_track_extension__col2').css('display') === 'none') {
             $('.cur_track_extension__col2').css('display', 'block')
         } else {
             $('.cur_track_extension__col2').css('display', 'none');
         }
-        if ($('.cur_track_extension__col1').css('display') === 'block') {
-            $('.cur_track_extension__col1').css('display', 'none')
+    })
+
+    $('#cur_track_extension__logs').on('click', () => {
+        if ($('.cur_track_extension__col4').css('display') === 'none') {
+            $('.cur_track_extension__col4').css('display', 'block')
         } else {
-            $('.cur_track_extension__col1').css('display', 'block')
+            $('.cur_track_extension__col4').css('display', 'none');
         }
     })
 
@@ -75,4 +91,42 @@ $(function () {
         $('#cur_track_extension__left').prop('value', defaultValues.leftPart)
         $('#cur_track_extension__right').prop('value', defaultValues.rightPart)
     })
+
+
+    $('#cur_track_extension__button-go').on('click', () => {
+        chrome.tabs.create({ url: chrome.runtime.getURL("/src/html/main.html") });
+    })
+
+    setInterval(() => {
+        chrome.tabs.query(
+            {
+                audible: true,
+            },
+            (tabs) => {
+                tabs.forEach(tab => {
+                    st.get(k => {
+                        if (k.isExtEnabled) {
+                            if (keywords.some(k => tab.url.includes(k))) {
+                                const element = document.createElement('a');
+                                element.setAttribute('href', 'data:text/text;charset=utf-8,' + encodeURI(` ${k.leftPart} ` + tab.title + ` ${k.rightPart} `));
+                                element.setAttribute('download', k.fileName + '.txt');
+                                element.click();
+                                delete element;
+                            }
+
+                            if (!log.some(item => item.includes(tab.title))) {
+                                log.push(tab.title)
+                            }
+
+                            $('.cur_track_extension__col4-logs').html('')
+                            log.forEach(l => {
+                                $('.cur_track_extension__col4-logs').append(`<p class="mt10">${l}</p> <hr class="cur_track_extension__hr" />`)
+                            })
+                        }
+                    })
+                });
+            }
+        )
+    }, 5000);
 });
+

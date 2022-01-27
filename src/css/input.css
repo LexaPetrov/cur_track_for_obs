@@ -27,9 +27,6 @@
   pointer-events: none;
   left: 5px;
   top: 10px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
 }
 
 /* active state */
@@ -39,31 +36,6 @@
   top: -20px;
   font-size: 14px;
   color: #282828;
-}
-
-/* BOTTOM BARS ================================= */
-.cur_track_extension__bar {
-  position: relative;
-  display: block;
-  width: 300px;
-}
-.cur_track_extension__bar:before,
-.cur_track_extension__bar:after {
-  content: "";
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  position: absolute;
-  background: #282828;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-.cur_track_extension__bar:before {
-  left: 50%;
-}
-.cur_track_extension__bar:after {
-  right: 50%;
 }
 
 /* active state */
@@ -81,37 +53,4 @@
   left: 0;
   pointer-events: none;
   opacity: 0.5;
-}
-/* active state */
-.cur_track_extension__input:focus ~ .cur_track_extension__highlight {
-  animation: inputHighlighter 0.3s ease;
-}
-
-/* ANIMATIONS ================ */
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@-moz-keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
 }

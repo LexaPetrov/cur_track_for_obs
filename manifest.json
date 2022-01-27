@@ -3,13 +3,9 @@
   "description": "Load current playing track from file to Scene (OBS, etc.) while streaming!",
   "version": "1.0",
   "manifest_version": 3,
-  "background": {
-    "service_worker": "src/js/background.js"
-  },
   "permissions": [
     "storage",
     "tabs",
-    "background",
     "downloads"
   ],
   "content_scripts": [
@@ -30,14 +26,14 @@
         "src/css/style.css"
       ],
       "js": [
-        "src/js/content.js",
-        "src/js/jquery-3.5.1.js"
+        "src/js/jquery-3.5.1.js",
+        "src/js/content.js"
       ],
       "run_at": "document_end"
     }
   ],
   "action": {
-    "default_title": "Current Track",
+    "default_title": "Current Track On Stream For OBS",
     "default_icon": "src/img/icon.png",
     "default_popup": "src/html/popup.html"
   }
