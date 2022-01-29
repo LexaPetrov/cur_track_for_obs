@@ -63,7 +63,8 @@ a.cur_track_extension__a:visited {
 @media (prefers-color-scheme: dark) {
   .cur_track_extension__body,
   .cur_track_extension__input,
-  .cur_track_extension__button {
+  .cur_track_extension__button,
+  .dark {
     background: var(--neutral-background) !important;
   }
 
@@ -72,7 +73,8 @@ a.cur_track_extension__a:visited {
     color: var(--neutral-text) !important;
   }
 
-  .cur_track_extension__button:disabled, .cur_track_extension__toggle-state:disabled {
+  .cur_track_extension__button:disabled,
+  .cur_track_extension__toggle-state:disabled {
     filter: contrast(50%);
   }
 }

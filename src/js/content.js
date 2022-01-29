@@ -107,6 +107,7 @@ $(function () {
                     st.get(k => {
                         if (k.isExtEnabled) {
                             if (keywords.some(k => tab.url.includes(k))) {
+                                $('#cur_track_extension__now-playing').html('🎵 Now playing: ' + tab.title)
                                 const element = document.createElement('a');
                                 element.setAttribute('href', 'data:text/text;charset=utf-8,' + encodeURI(` ${k.leftPart} ` + tab.title + ` ${k.rightPart} `));
                                 element.setAttribute('download', k.fileName + '.txt');
