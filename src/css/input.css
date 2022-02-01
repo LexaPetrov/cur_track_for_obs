@@ -22,7 +22,7 @@
 .cur_track_extension__input__label {
   color: #999;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: bold;
   position: absolute;
   pointer-events: none;
   left: 5px;

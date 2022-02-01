@@ -5,7 +5,7 @@ const keywords = [
     'youtube.com', 'open.spotify', 'music.yandex', 'vk.com'
 ];
 
-chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
+chrome && chrome.downloads && chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
     suggest({
         filename: item.filename,
         conflict_action: 'overwrite',
@@ -94,40 +94,43 @@ $(function () {
 
 
     $('#cur_track_extension__button-go').on('click', () => {
-        chrome.tabs.create({ url: chrome.runtime.getURL("/src/html/main.html") });
+        chrome && chrome.tabs && chrome.tabs.create({ url: chrome && chrome.runtime && chrome.runtime.getURL("/src/html/main.html") });
     })
 
     setInterval(() => {
-        chrome.tabs.query(
-            {
-                audible: true,
-            },
-            (tabs) => {
-                tabs.forEach(tab => {
-                    st.get(k => {
-                        if (k.isExtEnabled) {
-                            if (keywords.some(k => tab.url.includes(k))) {
-                                $('#cur_track_extension__now-playing').html('🎵 Now playing: ' + tab.title)
-                                const element = document.createElement('a');
-                                element.setAttribute('href', 'data:text/text;charset=utf-8,' + encodeURI(` ${k.leftPart} ` + tab.title + ` ${k.rightPart} `));
-                                element.setAttribute('download', k.fileName + '.txt');
-                                element.click();
-                                delete element;
-                            }
+        if (
+            $('#cur_track_extension__toggle-state__setting1').prop('checked')
+        ) {
+            chrome && chrome.tabs && chrome.tabs.query(
+                {
+                    audible: true,
+                },
+                (tabs) => {
+                    tabs.forEach(tab => {
+                        st.get(k => {
+                            if (k.isExtEnabled) {
+                                if (keywords.some(k => tab.url.includes(k))) {
+                                    $('#cur_track_extension__now-playing').html('🎵 Now playing: <br />' + tab.title)
+                                    const element = document.createElement('a');
+                                    element.setAttribute('href', 'data:text/text;charset=utf-8,' + encodeURI(` ${k.leftPart} ` + tab.title + ` ${k.rightPart} `));
+                                    element.setAttribute('download', k.fileName + '.txt');
+                                    element.click();
+                                    delete element;
+                                }
 
-                            if (!log.some(item => item.includes(tab.title))) {
-                                log.push(tab.title)
-                            }
+                                if (!log.some(item => item.includes(tab.title))) {
+                                    log.push(tab.title)
+                                }
 
-                            $('.cur_track_extension__col4-logs').html('')
-                            log.forEach(l => {
-                                $('.cur_track_extension__col4-logs').append(`<p class="mt10">${l}</p> <hr class="cur_track_extension__hr" />`)
-                            })
-                        }
-                    })
-                });
-            }
-        )
+                                $('.cur_track_extension__col4-logs').html('')
+                                log.forEach(l => {
+                                    $('.cur_track_extension__col4-logs').append(`<p class="mt10">${l}</p> <hr class="cur_track_extension__hr" />`)
+                                })
+                            }
+                        })
+                    });
+                }
+            )
+        }
     }, 5000);
 });
-

@@ -1,7 +1,7 @@
 {
   "name": "Current Track On Stream For OBS",
   "description": "Load current playing track from file to Scene (OBS, etc.) while streaming!",
-  "version": "1.0",
+  "version": "1.2",
   "manifest_version": 3,
   "permissions": [
     "storage",
